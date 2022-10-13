@@ -15,11 +15,11 @@ class Book extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id('book_id');
-            $table->string('id_user');
+            $table->string('nama');
+            $table->string('no_hp');
+            $table->string('id_peserta');
             $table->string('tanggal')->nullable();
             $table->string('jam')->nullable();
-            
-            
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class Book extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('books');
     }
 }
