@@ -50,7 +50,7 @@
                                     @endforeach
                                 </datalist>
                             </div>
-                            <button type="button" onclick="check()" class="btn btn-success">Check</button>
+                            <button type="submit" class="btn btn-success">Check</button>
                         </form>
                         
                     </div>
@@ -75,11 +75,10 @@
                                             <td class="text-center">{{ 10 - $row->total }}</td>
                                             <td class="text-center"> 
                                                 @if (10 - $row->total == 0 )
-                                                <button type="button" class="btn btn-primary" disabled > Daftar</button></td>    
+                                                <button type="button" class="btn btn-danger" disabled > Daftar</button></td>    
                                                 @else
-                                                    
-                                                @endif
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4" onclick="modalTambah('{{ $row->tanggal }}','{{ $row->jam }}')"> Daftar</button></td>
+                                                @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -147,7 +146,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Apply</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?')">Apply</button>
                 </form>
                 </div>
             </div>
