@@ -20,5 +20,4 @@ use App\Http\Controllers\BookController;
 
 Route::get('/', [BookController::class,'TampilBook']);
 Route::post('/addBook', [BookController::class,'TambahBook']);
-Route::post('/filterBook', [BookController::class,'filterBook']);
-// route('BookController.filterBook', ['tanggal' => 'tanggal', 'waktu' => 'waktu']);
+Route::post('/filterBook','BookController@filterBook');

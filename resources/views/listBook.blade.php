@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INSPINIA | Register</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="{{ url('assets') }}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url('assets') }}/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="{{ url('assets') }}/css/plugins/iCheck/custom.css" rel="stylesheet">
@@ -30,8 +30,9 @@
                 <div class="ibox">
                     <div class="ibox-title">
                         <h5>Find Out Our Schedule!</h5>
-                        <form class="m-t" method="get" role="form" action="filterBook">
+                        <form class="m-t" role="form">
                             @csrf
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label for="tanggal" class="form-label">Date</label>
                                 <input class="form-control" name="date" list="datalistOptions" id="tanggal" placeholder="Type to search..." autocomplete="off">
@@ -50,7 +51,7 @@
                                     @endforeach
                                 </datalist>
                             </div>
-                            <button type="submit" class="btn btn-success">Check</button>
+                            <input type="button" value="Check" onclick="check()" class="btn btn-success"/>
                         </form>
                         
                     </div>
@@ -72,8 +73,8 @@
                                         <tr class="gradeX">
                                             <td>{{ $row->tanggal }}</td>
                                             <td>{{ $row->jam }}</td>
-                                            <td class="text-center">{{ 10 - $row->total }}</td>
-                                            <td class="text-center"> 
+                                            <td>{{ 10 - $row->total }}</td>
+                                            <td> 
                                                 @if (10 - $row->total == 0 )
                                                 <button type="button" class="btn btn-danger" disabled > Daftar</button></td>    
                                                 @else
@@ -128,19 +129,9 @@
                         <div class="form-group">
                             <label>Tanggal</label> 
                             <input class="form-control"type="text" name="tanggal" list="datalistOptions" id="modalTanggal" placeholder="Type to search..." autocomplete="off" readonly>
-                            {{-- <datalist id="datalistOptions">
-                                @foreach ($tanggal as $row)
-                                    <option value="{{ $row->tanggal }}">
-                                @endforeach
-                            </datalist> --}}
                         <div class="form-group">
                             <label>Waktu</label> 
                             <input class="form-control" type="text" name="jam" list="datalistWaktu" id="modalWaktu" placeholder="Type to search..." autocomplete="off" readonly>
-                            {{-- <datalist id="datalistWaktu">
-                                @foreach ($waktu as $row)
-                                    <option value="{{ $row->jam }}">
-                                @endforeach
-                            </datalist> --}}
                     
                         </div>
                 </div>
@@ -166,8 +157,10 @@
 
     <script src="{{ url('assets') }}/js/plugins/sweetalert/sweetalert.min.js"></script>
 
-    <script>
     
+    <script>
+
+
         $(document).ready(function () {
             $('.dataTables-example').DataTable({
                 responsive: true
@@ -180,13 +173,74 @@
             $("#modalTanggal").val(t);
             $("#modalWaktu").val(j);
         }
+        
+
+        function check(){
+            var tanggal = document.getElementById('tanggal').value;
+            var waktu = document.getElementById('waktu').value;
+            // console.log(tanggal,waktu);
+            $('.dataTables-example').DataTable().destroy();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+            });
+
+                $.ajax({
+                    type: 'post',
+                    url: '/filterBook/',
+                    data : {
+                        _token: "{{csrf_token()}}", 
+                        tanggal:tanggal,
+                        waktu:waktu
+                    },
+                    success: function(data){
+                        console.log(data);
+                        // $('.dataTables-example').DataTable( {
+                        //     "data": data,
+                        //     "columns": [
+                        //         {
+                        //             "data": "tanggal",
+                        //         },
+                        //         {
+                        //             "data": "jam",
+                        //         },
+                        //         {
+                                    
+                        //             "data": "book_id",
+                        //             "render": function(data, type, row, meta) {
+                        //             return 10 - row.total;
+                        //             }
+                        //         },
+                        //         {
+                        //             "data": "book_id",
+                        //             "render": function(data, type, row, meta) {
+                        //                 if (10 - row.total == 0) {
+                        //                     return `<button type="button" class="btn btn-danger" disabled > Daftar</button></td>`;
+                        //                 } else {
+                        //                     return `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4" onclick="modalTambah('${row.tanggal}','${row.jam}')">Daftar</button></td>`;
+                        //                 }
+                        //             }
+                        //         }
+                        //     ]
+                        // } );
+
+                    }, 
+                    error: function(){
+                        console.log('AJAX load did not work');
+                    }
+                });
+        
+           
+
+        }
     </script>
 
 @if(session()->has('pesan'))
 <script>
     swal({
         title: "Good job!",
-        text: "You Have Successfully Registered!",
+        text: "{{ session('pesan') }}",
         type: "success"
     });
 </script>
