@@ -21,7 +21,11 @@
 
 <body>
     <div id="wrapper">
-        @include('template.sidebar')
+        @if (Auth::user()->level == 1)   
+            @include('template.sidebaruser')
+        @else       
+            @include('template.sidebar')
+        @endif
 
         <div id="page-wrapper" class="gray-bg">
             @include('template.header')

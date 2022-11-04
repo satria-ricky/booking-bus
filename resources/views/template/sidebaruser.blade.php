@@ -17,10 +17,9 @@
                     <li class= {{$loc == '/' ? "active" : "1"}}>
                         <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
-                    <li  class={{$loc == 'list_peserta' ? "active" : "2"}}>
-                        <a href="/list_peserta"><i class="fa fa-sticky-note"></i> <span class="nav-label">Daftar Peserta</span></a>
+                    <li  class={{$loc == 'list_jadwal' ? "active" : "2"}}>
+                        <a href="/list_jadwal"><i class="fa fa-sticky-note"></i> <span class="nav-label">Jadwal Saya</span></a>
                     </li>
-
                 </ul>
 
             </div>
