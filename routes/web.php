@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\dummy;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,9 @@ use App\Http\Controllers\BookController;
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('app');
 // });
 
-Route::get('/', [BookController::class,'TampilBook']);
-Route::post('/addBook', [BookController::class,'TambahBook']);
-Route::post('/filterBook','BookController@filterBook');
+Route::get('/',[dummy::class,'dashboard']);
+Route::get('/rekap',[dummy::class,'rekap']);
+Route::get('/input',[dummy::class,'tambah']);
