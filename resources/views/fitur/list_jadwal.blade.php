@@ -40,6 +40,21 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($data as $item)
+                                    <td class="text-center">{{$loop->index +1}}</td>
+                                    <td class="text-center">{{$item["jenis"]}}</td>
+                                    <td class="text-center">{{$item["tanggal"]}}</td>
+                                    <td class="text-center">{{$item["waktu"]}}</td>
+                                    <td class="text-center">
+                                        <form action="hapus_ujian" method="post">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$item['id_list']}}">
+                                            <input type="hidden" name="tes" value="{{$item['jenis']}}">
+                                            <input type="hidden" name="jadwal" value="{{$item['id_jadwal']}}">
+                                            <button class="btn btn-danger" type="submit" onclick="confirm('Apakah anda yakin?')"> Hapus</button>
+                                        </form>
+                                    </td>
+                                @endforeach
                                
                             </tbody>
                             

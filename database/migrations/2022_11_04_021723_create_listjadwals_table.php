@@ -14,7 +14,7 @@ class CreateListjadwalsTable extends Migration
     public function up()
     {
         Schema::create('listjadwals', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_list');
             $table->integer("id_peserta");
             $table->integer("id_jadwal");
             $table->timestamps();

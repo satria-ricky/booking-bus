@@ -86,8 +86,10 @@
                                                 @if (Auth::user()->ai)
                                                 <form action="simpan_jadwal" method="POST">
                                                     @csrf
-                                                    <input type="hidden" value="{{$item['id']}}" name="id">
-                                                    <p class="btn btn-sm btn-primary" onclick="confirm('Apakah anda yakin?')" >Daftar</p>
+                                                    <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
+                                                    <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
+                                                    <input type="hidden" value="{{$item['jenis']}}" name="tes">
+                                                    <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
                                                 </form>
                                                 @else
                                                     <p class="btn btn-sm btn-danger" >Daftar</p>
@@ -99,8 +101,10 @@
                                                 @if (Auth::user()->az)
                                                 <form action="simpan_jadwal" method="POST">
                                                     @csrf
-                                                    <input type="hidden" value="{{$item['id']}}" name="id">
-                                                    <p class="btn btn-sm btn-primary" onclick="confirm('Apakah anda yakin?')" >Daftar</p>
+                                                    <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
+                                                    <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
+                                                    <input type="hidden" value="{{$item['jenis']}}" name="tes">
+                                                    <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
                                                 </form>
                                                 @else
                                                     <p class="btn btn-sm btn-danger" >Daftar</p>
@@ -112,8 +116,10 @@
                                                 @if (Auth::user()->dp)
                                                 <form action="simpan_jadwal" method="POST">
                                                     @csrf
-                                                    <input type="hidden" value="{{$item['id']}}" name="id">
-                                                    <p class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</p>
+                                                    <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
+                                                    <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
+                                                    <input type="hidden" value="{{$item['jenis']}}" name="tes">
+                                                    <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
                                                 </form>
                                                 @else
                                                     <p class="btn btn-sm btn-danger" >Daftar</p>
