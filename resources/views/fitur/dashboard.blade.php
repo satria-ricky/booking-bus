@@ -82,49 +82,53 @@
                                             <button class="btn btn-sm btn-danger" onclick="confirm('Apakah anda yakin?')">Hapus</button>
                                         </form>
                                         @else
+                                            @if ($item['kuota'] !=0)
                                             @if ($item["jenis"] =="AI")
-                                                @if (Auth::user()->ai)
-                                                <form action="simpan_jadwal" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
-                                                    <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
-                                                    <input type="hidden" value="{{$item['jenis']}}" name="tes">
-                                                    <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
-                                                </form>
-                                                @else
-                                                    <p class="btn btn-sm btn-danger" >Daftar</p>
-                                                @endif
-                                                
+                                            @if (Auth::user()->ai)
+                                            <form action="simpan_jadwal" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
+                                                <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
+                                                <input type="hidden" value="{{$item['jenis']}}" name="tes">
+                                                <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
+                                            </form>
+                                            @else
+                                                <p class="btn btn-sm btn-danger" >Daftar</p>
                                             @endif
+                                            
+                                        @endif
 
-                                            @if ($item["jenis"] =="AZ")
-                                                @if (Auth::user()->az)
-                                                <form action="simpan_jadwal" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
-                                                    <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
-                                                    <input type="hidden" value="{{$item['jenis']}}" name="tes">
-                                                    <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
-                                                </form>
-                                                @else
-                                                    <p class="btn btn-sm btn-danger" >Daftar</p>
-                                                @endif
-                                                
+                                        @if ($item["jenis"] =="AZ")
+                                            @if (Auth::user()->az)
+                                            <form action="simpan_jadwal" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
+                                                <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
+                                                <input type="hidden" value="{{$item['jenis']}}" name="tes">
+                                                <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
+                                            </form>
+                                            @else
+                                                <p class="btn btn-sm btn-danger" >Daftar</p>
                                             @endif
+                                            
+                                        @endif
 
-                                            @if ($item["jenis"] =="DP")
-                                                @if (Auth::user()->dp)
-                                                <form action="simpan_jadwal" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
-                                                    <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
-                                                    <input type="hidden" value="{{$item['jenis']}}" name="tes">
-                                                    <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
-                                                </form>
-                                                @else
-                                                    <p class="btn btn-sm btn-danger" >Daftar</p>
-                                                @endif
-                                                
+                                        @if ($item["jenis"] =="DP")
+                                            @if (Auth::user()->dp)
+                                            <form action="simpan_jadwal" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{$item['id_jadwal']}}" name="jadwal">
+                                                <input type="hidden" value="{{Auth::user()->id}}" name="peserta">
+                                                <input type="hidden" value="{{$item['jenis']}}" name="tes">
+                                                <button type="submit" class="btn btn-sm btn-success" onclick="confirm('Apakah anda yakin?')" >Daftar</button>
+                                            </form>
+                                            @else
+                                                <p class="btn btn-sm btn-danger" >Daftar</p>
+                                            @endif
+                                            
+                                        @endif
+                                            @else
+                                            <p class="btn btn-sm btn-danger" >Kosong</p>
                                             @endif
                                             
                                         @endif
