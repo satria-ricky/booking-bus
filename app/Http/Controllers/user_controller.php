@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jadwal;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -41,11 +42,17 @@ class user_controller extends Controller
         }
     }
 
-    public function create_user()
+    public function tambah_peserta(Request $req)
     {
-        echo "masuk";
+        // echo "masuk";
+
+        $file = $req->file('excel');
+        $exten = $file->getClientOriginalExtension();
+        $nama = $req['nama'] . '_' . substr($req['tanggal'], 0, 10) . '.' . $exten;
+        $tujuan_upload = 'data/';
+        $file->move($tujuan_upload, $nama);
         try {
-            $Spreadsheet = new SpreadsheetReader('data/Data.xlsx');
+            $Spreadsheet = new SpreadsheetReader($tujuan_upload.$nama);
             // dd($Spreadsheet);
             // $Sheets = $Spreadsheet -> Sheets();		
 
@@ -80,35 +87,54 @@ class user_controller extends Controller
                     $user->save();
                     
 
-                    echo $Row[0];
-                    echo "[0]";
-                    echo $Row[1];
-                    echo "[1]";
-                    echo $Row[2];
-                    echo "[2]";
-                    echo $Row[3];
-                    echo "[3]";
-                    echo $Row[4];
-                    echo "[4]";
-                    echo $Row[5];
-                    echo "[5]";
-                    echo $Row[6];
-                    echo "[6]";
-                    echo $Row[7];
-                    echo "[7]";
-                    echo $Row[8];
-                    echo "[8]";
-                    echo $Row[9];
-                    echo "[9]";
-                    echo "<br>";
+                    // echo $Row[0];
+                    // echo "[0]";
+                    // echo $Row[1];
+                    // echo "[1]";
+                    // echo $Row[2];
+                    // echo "[2]";
+                    // echo $Row[3];
+                    // echo "[3]";
+                    // echo $Row[4];
+                    // echo "[4]";
+                    // echo $Row[5];
+                    // echo "[5]";
+                    // echo $Row[6];
+                    // echo "[6]";
+                    // echo $Row[7];
+                    // echo "[7]";
+                    // echo $Row[8];
+                    // echo "[8]";
+                    // echo $Row[9];
+                    // echo "[9]";
+                    // echo "<br>";
                     // return "bisa";
                 } else {
                     echo "kosong";
-                    return "tidak";
+                    // return "tidak";
                 }
             }
         } catch (Exception $E) {
             echo $E->getMessage();
         }
+        return redirect("/list_peserta");
+    }
+
+    public function dashboard() {
+        $loc = "dashboard";
+        $data = jadwal::all();
+        return view("fitur.dashboard", compact("loc","data"));
+    }
+
+    public function list_peserta() {
+        $loc = "list_peserta";
+        $data = User::all()->where("level", 1);
+        return view("fitur.list_peserta", compact("loc","data"));
+    }
+
+    public function logout()
+    {
+        Auth::logout(); // menghapus session yang aktif
+        return redirect('login');
     }
 }

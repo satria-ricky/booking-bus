@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\jadwal;
+use App\Http\Controllers\jadwal_controller;
 use App\Http\Controllers\user_controller;
 use Illuminate\Support\Facades\Route;
 
@@ -19,19 +21,18 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/',  function () {
-        return view('fitur.dashboard', ['loc' => "halo"]);
-    });
+    Route::get('/',  [user_controller::class, 'dashboard']);
 
-    Route::get('/dashboard', function () {
-        return view('fitur.dashboard', ['loc' => "halo"]);
-    });
-    Route::get('/list_jadwal', function () {
-        return view('fitur.list_jadwal', ['loc' => "halo"]);
-    });
-    Route::get('/list_peserta', function () {
-        return view('fitur.list_peserta', ['loc' => "halo"]);
-    });
+    Route::get('/dashboard', [user_controller::class, 'dashboard']);
+
+    Route::get('/list_peserta',[user_controller::class,'list_peserta']);
+    Route::post('/tambah_peserta', [user_controller::class, 'tambah_peserta']);
+
+    Route::get('/list_jadwal',[jadwal_controller::class,'list_jadwal']);
+    Route::post('/tambah_jadwal', [jadwal_controller::class, 'tambah_jadwal']);
+    Route::post('/hapus_jadwal', [jadwal_controller::class, 'hapus_jadwal']);
+
+    Route::get('/logout', [user_controller::class, 'logout']);
 });
 
 Route::get('/login', [user_controller::class, 'tampil_login'])->name("login");

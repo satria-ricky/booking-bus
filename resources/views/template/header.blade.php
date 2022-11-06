@@ -52,7 +52,7 @@
 
 
                         <li>
-                            <a href="login.html">
+                            <a href="logout">
                                 <i class="fa fa-sign-out"></i> Keluar
                             </a>
                         </li>
