@@ -11,9 +11,9 @@
             <li class="breadcrumb-item">
                 <a>Profil</a>
             </li>
-            <li class="breadcrumb-item active">
+            {{-- <li class="breadcrumb-item active">
                 <strong>Edit Profil</strong>
-            </li>
+            </li> --}}
         </ol>
     </div>
     <div class="col-lg-2">
