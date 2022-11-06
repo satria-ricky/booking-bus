@@ -6,7 +6,7 @@
         <h2>Data Tables</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Jadwal Saya</a>
+                <a href="index.html">Daftar Peserta</a>
             </li>
             <li class="breadcrumb-item">
                 <a>Tables</a>
@@ -24,10 +24,12 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Jadwal Saya</h5>
+                    <h5>Peserta CATC</h5>
                 </div>
                 <div class="ibox-content" style=" min-height: calc(100vh - 244px); ">
-
+                    @if (Auth::user()->level ==0)
+                     <button class="btn btn-lg btn-primary mb-3 mt-1"> Tambah Peserta</button>   
+                    @endif
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover dataTables-example">
                             <thead>

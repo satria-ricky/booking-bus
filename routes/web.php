@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\dummy;
-use App\Http\Controllers\user;
+use App\Http\Controllers\user_controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,22 +18,23 @@ use Illuminate\Support\Facades\Route;
 //     return view('app');
 // });
 
-Route::group(['middleware' => 'auth'], function () { 
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/',  function () {
         return view('fitur.dashboard', ['loc' => "halo"]);
-    } );
+    });
 
-Route::get('/dashboard', function () {
-    return view('fitur.dashboard', ['loc' => "halo"]);
-} );
-Route::get('/list_jadwal', function () {
-    return view('fitur.list_jadwal', ['loc' => "halo"]);
-} );
-Route::get('/list_peserta', function () {
-    return view('fitur.list_peserta', ['loc' => "halo"]);
-} );
-
+    Route::get('/dashboard', function () {
+        return view('fitur.dashboard', ['loc' => "halo"]);
+    });
+    Route::get('/list_jadwal', function () {
+        return view('fitur.list_jadwal', ['loc' => "halo"]);
+    });
+    Route::get('/list_peserta', function () {
+        return view('fitur.list_peserta', ['loc' => "halo"]);
+    });
 });
 
-Route::get('/login',[user::class,'tampil_login'])->name("login");
-Route::post('/login',[user::class,'login']);
+Route::get('/login', [user_controller::class, 'tampil_login'])->name("login");
+Route::post('/login', [user_controller::class, 'login']);
+
+Route::get('/dummy',[user_controller::class,'create_user']);

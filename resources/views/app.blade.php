@@ -56,28 +56,12 @@
 
     <!-- jQuery UI -->
     <script src={{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}></script>
-
-    <!-- Flot -->
-    <script src={{ asset('js/plugins/flot/jquery.flot.js') }}></script>
-    <script src={{ asset('js/plugins/flot/jquery.flot.tooltip.min.js') }}></script>
-    <script src={{ asset('js/plugins/flot/jquery.flot.resize.js') }}></script>
-    <script src={{ asset('js/plugins/flot/jquery.flot.pie.js') }}></script>
-    <script src={{ asset('js/plugins/flot/jquery.flot.time.js') }}></script>
-
-    <!-- Flot demo data -->
-    <script src={{ asset('js/demo/flot-demo.js') }}></script>
-
-
-    <!-- ChartJS-->
-    <script src={{ asset('js/plugins/chartJs/Chart.min.js') }}></script>
-    <script src={{ asset('js/demo/chartjs-demo.js') }}></script>
-
     {{-- select2 --}}
     
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            console.log("ready!");
+            // console.log("ready!");
             $(document).ready(function() {
                 $('.js-example-basic-single').select2();
             });
