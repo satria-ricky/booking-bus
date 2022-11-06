@@ -16,6 +16,16 @@ use Exception;
 
 class user_controller extends Controller
 {
+
+    public function tampil_profil()
+    {
+        $loc = "";
+        return view('fitur.profil',[
+            'loc' => $loc
+        ]);
+    }
+
+
     public function tampil_login()
     {
         return view('Auth.login');

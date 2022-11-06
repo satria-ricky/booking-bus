@@ -9,7 +9,7 @@
                             <span class="m-r-sm text-muted welcome-message">Selamat Datang di Sistem Informasi Presensi</span>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <a class=" count-info" href="/profil">
                                 <i class="fa fa-user"></i> Profil
                             </a>
                             {{-- <ul class="dropdown-menu dropdown-alerts">
@@ -52,7 +52,7 @@
 
 
                         <li>
-                            <a href="logout">
+                            <a href="/logout">
                                 <i class="fa fa-sign-out"></i> Keluar
                             </a>
                         </li>
